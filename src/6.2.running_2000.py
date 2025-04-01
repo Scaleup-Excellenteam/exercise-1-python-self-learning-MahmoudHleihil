@@ -18,7 +18,7 @@ def running_2000(f, *args, **kwargs):
     result = f(*args, **kwargs)  # Call the function with the provided arguments
     end_time = time.perf_counter()  # Stop the timer
     elapsed_time = end_time - start_time  # Calculate the elapsed time
-    return elapsed_time, result  # Return the time and the result of the function
+    return elapsed_time  # Return the time and the result of the function
 
 
 if __name__ == '__main__':

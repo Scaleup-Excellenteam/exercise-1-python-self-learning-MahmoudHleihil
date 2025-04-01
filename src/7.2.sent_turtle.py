@@ -2,7 +2,6 @@
 This module contains a PostOffice class that allows users to send, read, and search for messages in their inboxes.
 """
 
-
 class PostOffice:
     """A Post Office class. Allows users to message each other.
 
@@ -16,11 +15,12 @@ class PostOffice:
         self.message_id = 0
         self.boxes = {user: [] for user in usernames}
 
-    def send_message(self, sender, recipient, message_body, urgent=False):
+    def send_message(self, sender, recipient, title, message_body, urgent=False):
         """Send a message to a recipient.
 
         :param str sender: The message sender's username.
         :param str recipient: The message recipient's username.
+        :param str title: The title of the message.
         :param str message_body: The body of the message.
         :param urgent: The urgency of the message.
         :type urgent: bool, optional
@@ -34,9 +34,10 @@ class PostOffice:
         self.message_id += 1
         message_details = {
             'id': self.message_id,
+            'title': title,
             'body': message_body,
             'sender': sender,
-            'read': False  # Added a 'read' flag to track message status
+            'unread': True
         }
 
         if urgent:
@@ -65,7 +66,7 @@ class PostOffice:
         self.boxes[username] = inbox[len(messages_to_return):]
 
         for message in messages_to_return:
-            message['read'] = True
+            message['unread'] = False
 
         return messages_to_return
 
@@ -81,16 +82,20 @@ class PostOffice:
         if username not in self.boxes:
             raise KeyError(f"User '{username}' not found")
 
-        return [message for message in self.boxes[username]
-                if query.lower() in message['body'].lower() or query.lower() in message['sender'].lower()]
+        return [
+            message for message in self.boxes[username]
+            if query.lower() in message['title'].lower()
+            or query.lower() in message['body'].lower()
+            or query.lower() in message['sender'].lower()
+        ]
 
 
 if __name__ == '__main__':
     # Example usage
     po = PostOffice(["alice", "bob"])
-    po.send_message("alice", "bob", "Hello Bob!")
-    po.send_message("bob", "alice", "Hey Alice! How are you?", urgent=True)
-    po.send_message("alice", "bob", "Reminder: Meeting at 5 PM")
+    po.send_message("alice", "bob", "Greeting", "Hello Bob!")
+    po.send_message("bob", "alice", "Check-in", "Hey Alice! How are you?", urgent=True)
+    po.send_message("alice", "bob", "Meeting Reminder", "Reminder: Meeting at 5 PM")
 
     print("Bob's inbox before reading:", po.boxes["bob"])
     print("Bob reads messages:", po.read_inbox("bob", 2))

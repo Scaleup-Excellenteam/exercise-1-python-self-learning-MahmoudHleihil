@@ -9,7 +9,7 @@ class TypeCheckError(TypeError):
     """
     Custom exception raised when an argument type does not match the expected type.
     """
-    pass
+    # No need for 'pass' here
 
 
 def type_check(expected_type):
@@ -45,6 +45,12 @@ def type_check(expected_type):
 # Example usage:
 @type_check(int)
 def square(n):
+    """
+    Returns the square of a given integer.
+
+    :param n: An integer number.
+    :return: The square of the given number.
+    """
     return n * n
 
 

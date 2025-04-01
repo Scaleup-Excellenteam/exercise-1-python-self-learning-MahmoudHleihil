@@ -5,13 +5,14 @@ This module provides the `parsle_tongue` function, which extracts secret message
 import re
 
 
-def parsle_tongue(filename: str):
+def parsle_tongue():
     """
     Extracts secret messages from a binary file.
 
     :param filename: Path to the binary file.
     :return: A list of extracted secret messages.
     """
+    filename = "resources/logo.jpg"
     pattern = re.compile(rb'[a-z]{5,}!')  # Regex pattern to find secret messages
     messages = []
 
@@ -25,4 +26,4 @@ def parsle_tongue(filename: str):
 
 if __name__ == '__main__':
     # Example usage
-    print(parsle_tongue("resources/logo.jpg"))
+    print(parsle_tongue())

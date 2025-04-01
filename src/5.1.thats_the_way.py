@@ -1,8 +1,7 @@
-import os
-
 """
 This module contains a function to list files in a directory that start with 'deep'.
 """
+import os
 
 def thats_the_way(directory: str):
     """

@@ -1,5 +1,6 @@
 """
-This module contains a decorator called 'surprise' that modifies functions to print a surprise message before executing them.
+This module contains a decorator called 'surprise' that modifies functions
+to print a surprise message before executing them.
 """
 
 import functools
@@ -30,6 +31,9 @@ def surprise(func):
 # Example usage:
 @surprise
 def greet():
+    """
+    Prints a greeting message.
+    """
     print("Hello, world!")
 
 
