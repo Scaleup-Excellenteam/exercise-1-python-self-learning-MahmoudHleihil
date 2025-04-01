@@ -12,7 +12,7 @@ def parsle_tongue():
     :param filename: Path to the binary file.
     :return: A list of extracted secret messages.
     """
-    filename = "resources/logo.jpg"
+    filename = "logo.jpg"
     pattern = re.compile(rb'[a-z]{5,}!')  # Regex pattern to find secret messages
     messages = []
 

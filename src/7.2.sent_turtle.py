@@ -3,41 +3,24 @@ This module contains a PostOffice class that allows users to send, read, and sea
 """
 
 class PostOffice:
-    """A Post Office class. Allows users to message each other.
-
-    :ivar int message_id: Incremental id of the last message sent.
-    :ivar dict boxes: Users' inboxes.
-
-    :param list usernames: Users for which we should create PO Boxes.
-    """
+    """A Post Office class. Allows users to message each other."""
 
     def __init__(self, usernames):
         self.message_id = 0
         self.boxes = {user: [] for user in usernames}
 
     def send_message(self, sender, recipient, title, message_body, urgent=False):
-        """Send a message to a recipient.
-
-        :param str sender: The message sender's username.
-        :param str recipient: The message recipient's username.
-        :param str title: The title of the message.
-        :param str message_body: The body of the message.
-        :param urgent: The urgency of the message.
-        :type urgent: bool, optional
-        :return: The message ID, auto incremented number.
-        :rtype: int
-        :raises KeyError: if the recipient does not exist.
-        """
+        """Send a message to a recipient."""
         if recipient not in self.boxes:
             raise KeyError(f"Recipient '{recipient}' not found")
 
         self.message_id += 1
         message_details = {
             'id': self.message_id,
-            'title': title,
+            'title': title,  # Add title
             'body': message_body,
             'sender': sender,
-            'unread': True
+            'read': False  # Use 'read' flag to mark whether the message has been read
         }
 
         if urgent:
@@ -48,43 +31,27 @@ class PostOffice:
         return self.message_id
 
     def read_inbox(self, username, count=None):
-        """Retrieve and mark messages as read from a user's inbox.
-
-        :param str username: The username of the inbox owner.
-        :param int count: The number of messages to retrieve.
-        :return: A list of messages retrieved.
-        :rtype: list
-        :raises KeyError: if the user does not exist.
-        """
+        """Retrieve and mark messages as read from a user's inbox."""
         if username not in self.boxes:
             raise KeyError(f"User '{username}' not found")
 
         inbox = self.boxes[username]
         messages_to_return = inbox[:count] if count else inbox[:]
 
-        # Mark messages as read and remove them from the inbox
-        self.boxes[username] = inbox[len(messages_to_return):]
-
+        # Mark messages as read without removing them
         for message in messages_to_return:
-            message['unread'] = False
+            message['read'] = True  # Mark the message as read
 
         return messages_to_return
 
     def search_inbox(self, username, query):
-        """Search for messages in a user's inbox containing a specific query.
-
-        :param str username: The username of the inbox owner.
-        :param str query: The search string.
-        :return: A list of messages containing the query.
-        :rtype: list
-        :raises KeyError: if the user does not exist.
-        """
+        """Search for messages in a user's inbox containing a specific query."""
         if username not in self.boxes:
             raise KeyError(f"User '{username}' not found")
 
         return [
             message for message in self.boxes[username]
-            if query.lower() in message['title'].lower()
+            if query.lower() in message['title'].lower()  # Search by title
             or query.lower() in message['body'].lower()
             or query.lower() in message['sender'].lower()
         ]

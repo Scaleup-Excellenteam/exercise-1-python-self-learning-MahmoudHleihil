@@ -4,7 +4,7 @@ This module contains a function to generate a random date between two given date
 import random
 import datetime
 
-def no_vinnigrete(start: str, end: str):
+def no_vinnigrette(start: str, end: str):
     """
     Takes two dates in the format YYYY-MM-DD and returns a random date between them.
     """
@@ -19,6 +19,7 @@ def no_vinnigrete(start: str, end: str):
 
 if __name__ == '__main__':
     # Example usage
+    no_vinnigrette("2023-07-10", "2023-07-10")
     start_date_input = input("Enter start date (YYYY-MM-DD): ")
     end_date_input = input("Enter end date (YYYY-MM-DD): ")
-    no_vinnigrete(start_date_input, end_date_input)
+    no_vinnigrette(start_date_input, end_date_input)
