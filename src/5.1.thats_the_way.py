@@ -1,6 +1,6 @@
 import os
 
-def list_deep_files(directory: str):
+def thats_the_way(directory: str):
     """
     Returns a list of all files in the given directory that start with "deep"
     """
@@ -9,4 +9,4 @@ def list_deep_files(directory: str):
 
 if __name__ == '__main__':
     # Example usage
-    print(list_deep_files("./images"))
+    print(thats_the_way("./images"))

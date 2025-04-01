@@ -1,4 +1,4 @@
-def count_words(text: str):
+def long_cat_is_long(text: str):
     """
     Returns a dictionary with the lengths of words in the given text.
     """
@@ -10,5 +10,5 @@ def count_words(text: str):
 
 if __name__ == '__main__':
     # Example usage
-    print(count_words("You see, wire telegraph is a kind of a very, very long cat."))
+    print(long_cat_is_long("You see, wire telegraph is a kind of a very, very long cat."))
 

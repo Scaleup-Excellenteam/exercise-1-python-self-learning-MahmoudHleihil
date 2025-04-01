@@ -1,4 +1,4 @@
-def join(*lists, sep='-'):
+def cup_of_join(*lists, sep='-'):
     """
     Joins multiple lists with a separator between the lists.
     """
@@ -14,4 +14,4 @@ def join(*lists, sep='-'):
 
 if __name__ == '__main__':
     # Example usage
-    print(join([1, 2], [8], [9, 5, 6], sep='@'))
+    print(cup_of_join([1, 2], [8], [9, 5, 6], sep='@'))

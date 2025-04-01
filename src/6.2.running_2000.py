@@ -1,6 +1,6 @@
 import time
 
-def timer(f, *args, **kwargs):
+def running_2000(f, *args, **kwargs):
     """
     Measures the execution time of the given function with the provided parameters.
     """
@@ -13,4 +13,4 @@ def timer(f, *args, **kwargs):
 
 if __name__ == '__main__':
     # Example usage
-    print(timer(sum, [1, 2, 3, 4, 5]))
+    print(running_2000(sum, [1, 2, 3, 4, 5]))

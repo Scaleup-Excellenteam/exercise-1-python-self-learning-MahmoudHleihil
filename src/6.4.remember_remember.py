@@ -1,6 +1,6 @@
 from PIL import Image
 
-def decode_message(image_path):
+def remember_remember(image_path):
     """
     Decodes a hidden message from an image where each column contains one black pixel.
     
@@ -23,4 +23,4 @@ def decode_message(image_path):
 
 if __name__ == '__main__':
     # Example usage
-    print(decode_message("resources/code.png"))
+    print(remember_remember("resources/code.png"))

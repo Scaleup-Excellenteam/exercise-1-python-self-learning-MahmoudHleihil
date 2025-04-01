@@ -1,6 +1,6 @@
 import re
 
-def extract_secret_messages(filename: str):
+def parsle_tongue(filename: str):
     """
     Extracts secret messages from a binary file.
     """
@@ -17,4 +17,4 @@ def extract_secret_messages(filename: str):
 
 if __name__ == '__main__':
     # Example usage
-    print(extract_secret_messages("resources/logo.jpg"))
+    print(parsle_tongue("resources/logo.jpg"))

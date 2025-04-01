@@ -10,7 +10,7 @@ def interleave(*iterables):
 print(interleave('abc', [1, 2, 3], ('!', '@', '#')))
 
 
-def interleave_generator(*iterables):
+def generator_interleave(*iterables):
     """
     A generator that yields interwoven elements from the given iterables.
     """
@@ -22,4 +22,4 @@ def interleave_generator(*iterables):
 
 if __name__ == '__main__':
     # Example usage
-    print(list(interleave_generator('abc', [1, 2, 3], ('!', '@', '#'))))
+    print(list(generator_interleave('abc', [1, 2, 3], ('!', '@', '#'))))
