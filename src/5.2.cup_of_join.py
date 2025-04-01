@@ -1,3 +1,7 @@
+"""
+This module provides the `cup_of_join` function, which joins multiple lists with a separator.
+"""
+
 def cup_of_join(*lists, sep='-'):
     """
     Joins multiple lists with a separator between the lists.

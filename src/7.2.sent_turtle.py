@@ -1,3 +1,8 @@
+"""
+This module contains a PostOffice class that allows users to send, read, and search for messages in their inboxes.
+"""
+
+
 class PostOffice:
     """A Post Office class. Allows users to message each other.
 
@@ -6,7 +11,7 @@ class PostOffice:
 
     :param list usernames: Users for which we should create PO Boxes.
     """
-    
+
     def __init__(self, usernames):
         self.message_id = 0
         self.boxes = {user: [] for user in usernames}
@@ -25,7 +30,7 @@ class PostOffice:
         """
         if recipient not in self.boxes:
             raise KeyError(f"Recipient '{recipient}' not found")
-        
+
         self.message_id += 1
         message_details = {
             'id': self.message_id,
@@ -33,14 +38,14 @@ class PostOffice:
             'sender': sender,
             'read': False  # Added a 'read' flag to track message status
         }
-        
+
         if urgent:
             self.boxes[recipient].insert(0, message_details)
         else:
             self.boxes[recipient].append(message_details)
-        
+
         return self.message_id
-    
+
     def read_inbox(self, username, count=None):
         """Retrieve and mark messages as read from a user's inbox.
 
@@ -52,18 +57,18 @@ class PostOffice:
         """
         if username not in self.boxes:
             raise KeyError(f"User '{username}' not found")
-        
+
         inbox = self.boxes[username]
         messages_to_return = inbox[:count] if count else inbox[:]
-        
+
         # Mark messages as read and remove them from the inbox
         self.boxes[username] = inbox[len(messages_to_return):]
-        
+
         for message in messages_to_return:
             message['read'] = True
-        
+
         return messages_to_return
-    
+
     def search_inbox(self, username, query):
         """Search for messages in a user's inbox containing a specific query.
 
@@ -75,8 +80,8 @@ class PostOffice:
         """
         if username not in self.boxes:
             raise KeyError(f"User '{username}' not found")
-        
-        return [message for message in self.boxes[username] 
+
+        return [message for message in self.boxes[username]
                 if query.lower() in message['body'].lower() or query.lower() in message['sender'].lower()]
 
 

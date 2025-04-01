@@ -1,3 +1,7 @@
+"""
+This module provides a function to group items from an iterable based on the result of a function applied to them.
+"""
+
 from collections import defaultdict
 
 def group_by(func, iterable):
